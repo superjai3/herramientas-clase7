@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Seguroquesi.Enums;
 
-namespace clase7.Models
+namespace Seguroquesi.Models
 {
     public class Tomador
     {
@@ -11,34 +13,29 @@ namespace clase7.Models
 
         // Nombres y apellidos
         [Required]
-        public string PrimerNombre { get; set; }
-        public string SegundoNombre { get; set; }
-        public string PrimerApellido { get; set; }
-        public string SegundoApellido { get; set; }
+        public required string PrimerNombre { get; set; }
+        public required string SegundoNombre { get; set; }
+        public required string PrimerApellido { get; set; }
+        public required string SegundoApellido { get; set; }
 
         // Información de contacto
         [Required, EmailAddress]
-        public string Email { get; set; }
+        public required string Email { get; set; }
 
         [Required, Phone]
-        public string Telefono { get; set; }
+        public required string Telefono { get; set; }
 
         [Column(TypeName = "varchar(50)")]
         [Required]
-        // Domicilio
-        public string Direccion { get; set; }
+        public required string Direccion { get; set; }
 
-        // Identificadores de ubicación
-        [Required]
-        public Guid? CiudadId { get; set; }
-        public Ciudad Ciudad { get; set; }
-
-        [Required]
-        public Guid? ProvinciaId { get; set; }
-        public Provincia Provincia { get; set; }
+        // Ubicación (elije según país)
+        public CiudadArgentina? CiudadArgentina { get; set; }
+        public CiudadEspana? CiudadEspana { get; set; }
+        public ProvinciaArgentina? ProvinciaArgentina { get; set; }
+        public ProvinciaEspana? ProvinciaEspana { get; set; }
 
         [Required]
-        public Guid? PaisId { get; set; }
         public Pais Pais { get; set; }
 
         [Required]
@@ -46,10 +43,10 @@ namespace clase7.Models
 
         // Identificación personal
         [Required]
-        public TipoDocumento Documento { get; set; }
+        public TipoDocumentoPersona Documento { get; set; }
 
         [Required]
-        public string NumeroDocumento { get; set; }
+        public required string NumeroDocumento { get; set; }
 
         [Required]
         public DateTime FechaNacimiento { get; set; }
@@ -58,13 +55,12 @@ namespace clase7.Models
         public Genero Genero { get; set; }
 
         [Required]
-        public Nacionalidad Nacionalidad { get; set; }
+        public Pais Nacionalidad { get; set; } // Reutilizamos el enum Pais
 
-        // Información adicional
         public RolUsuario Rol { get; set; }
         public bool EsEmpresa { get; set; }
 
-        // Relaciones con otras entidades
+        // Relaciones
         public ICollection<Poliza> Polizas { get; set; } = new List<Poliza>();
         public ICollection<Cotizacion> Cotizaciones { get; set; } = new List<Cotizacion>();
         public ICollection<DocumentoAdjunto> DocumentosAdjuntos { get; set; } = new List<DocumentoAdjunto>();

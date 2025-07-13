@@ -1,33 +1,38 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Seguroquesi.Enums;
 
-namespace clase7.Models
+namespace Seguroquesi.Models
 {
     public class Aseguradora
     {
+        [Key]
         public Guid Id { get; set; }
 
-        [Required]
-        public string Nombre { get; set; }
+        [Required(ErrorMessage = "El nombre de la aseguradora es obligatorio.")]
+        public required string Nombre { get; set; }
 
-        public TipoDocumentoEmpresa Documento { get; set; } // DNI / NIE / CUIT / CIF
-        public string Contacto { get; set; }
+        public TipoDocumentoEmpresa Documento { get; set; } // CUIT, CIF, etc.
 
-        [Required, EmailAddress]
-        public string Email { get; set; }
+        public required string Contacto { get; set; }
 
-        [Required, Phone]
-        public string Telefono { get; set; }
+        [Required(ErrorMessage = "El email es obligatorio."), EmailAddress]
+        public required string Email { get; set; }
 
+        [Required(ErrorMessage = "El teléfono es obligatorio."), Phone]
+        public required string Telefono { get; set; }
+
+        [Required(ErrorMessage = "La dirección es obligatoria.")]
         [Column(TypeName = "varchar(50)")]
-        [Required]
-        public string Direccion { get; set; }
+        public required string Direccion { get; set; }
 
-        [Required]
-        public Guid? PaisId { get; set; } // Identificador del país
-        public Pais Pais { get; set; } // Argentina o España
+        [Required(ErrorMessage = "El país es obligatorio.")]
+        public Pais Pais { get; set; } // Enum (Argentina o España)
 
+        // Relación con ProductoSeguro
         public ICollection<ProductoSeguro> Productos { get; set; } = new List<ProductoSeguro>();
     }
 }
+

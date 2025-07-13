@@ -2,30 +2,35 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Seguroquesi.Enums;
 
-namespace clase7.Models
+namespace Seguroquesi.Models
 {
     public class ProductoSeguro
     {
+        [Key]
         public Guid ProductoSeguroId { get; set; }
 
-        [Required]
-        public string Nombre { get; set; } // Seguro de Vida, Auto, Salud, RC, etc.
+        [Required(ErrorMessage = "El nombre del producto es obligatorio.")]
+        [StringLength(100)]
+        public required string Nombre { get; set; }
 
-        public string Descripcion { get; set; }
+        [StringLength(500)]
+        public required string Descripcion { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
-        public decimal PrimaBase { get; set; } // Precio base
+        [Range(0, double.MaxValue, ErrorMessage = "La prima base debe ser mayor o igual a 0.")]
+        public decimal PrimaBase { get; set; }
 
-        public RamoId RamoId { get; set; } // Identificador del ramo
+        [Required(ErrorMessage = "El ramo del seguro es obligatorio.")]
+        public RamoId RamoId { get; set; }
 
-        public string Cobertura { get; set; }
+        public required string CoberturaCoche { get; set; }
 
+        [Required]
         public Guid AseguradoraId { get; set; }
-        public Aseguradora Aseguradora { get; set; }
+        public required Aseguradora Aseguradora { get; set; }
 
-        // Relación Uno a Muchos con CoberturaAdicionalCoche
-        public ICollection<CoberturaAdicionalCoche> CoberturaAdicionalCoche { get; set; } = new List<CoberturaAdicionalCoche>();
-
+        public ICollection<CoberturaAdicionalCoche> CoberturasAdicionalesCoche { get; set; } = new List<CoberturaAdicionalCoche>();
     }
 }

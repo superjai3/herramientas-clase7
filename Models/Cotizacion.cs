@@ -1,19 +1,28 @@
-namespace clase7.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Seguroquesi.Enums;
 
-public class Cotizacion
+
+namespace Seguroquesi.Models
 {
-    public Guid Id { get; set; }
-    public DateTime FechaSolicitud { get; set; }
 
-    public Guid TomadorId { get; set; }
-    public Tomador Tomador { get; set; }
+    public class Cotizacion
+    {
+        public Guid Id { get; set; }
+        public DateTime FechaSolicitud { get; set; }
 
-    public Guid ProductoSeguroId { get; set; }
-    public ProductoSeguro ProductoSeguro { get; set; }
+        public Guid TomadorId { get; set; }
+        public required Tomador Tomador { get; set; }
 
-    public decimal MontoEstimado { get; set; }
-    public EstadoCotizacion Estado { get; set; } // Pendiente, Aceptada, Rechazada
+        public Guid ProductoSeguroId { get; set; }
+        public required ProductoSeguro ProductoSeguro { get; set; }
 
-    public Poliza? Poliza { get; set; }  // Navegación inversa
+        public decimal MontoEstimado { get; set; }
+        public EstadoCotizacion Estado { get; set; } // Pendiente, Aceptada, Rechazada
 
+        public Poliza? Poliza { get; set; }  // Navegación inversa
+
+    }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jaime\\herramientas-de-programacion\\clase7\\clase7.csproj": {}
+    "C:\\Users\\jaime\\herramientas-de-programacion\\Seguroquesi\\Seguroquesi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jaime\\herramientas-de-programacion\\clase7\\clase7.csproj": {
+    "C:\\Users\\jaime\\herramientas-de-programacion\\Seguroquesi\\Seguroquesi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jaime\\herramientas-de-programacion\\clase7\\clase7.csproj",
-        "projectName": "clase7",
-        "projectPath": "C:\\Users\\jaime\\herramientas-de-programacion\\clase7\\clase7.csproj",
+        "projectUniqueName": "C:\\Users\\jaime\\herramientas-de-programacion\\Seguroquesi\\Seguroquesi.csproj",
+        "projectName": "Seguroquesi",
+        "projectPath": "C:\\Users\\jaime\\herramientas-de-programacion\\Seguroquesi\\Seguroquesi.csproj",
         "packagesPath": "C:\\Users\\jaime\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jaime\\herramientas-de-programacion\\clase7\\obj\\",
+        "outputPath": "C:\\Users\\jaime\\herramientas-de-programacion\\Seguroquesi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

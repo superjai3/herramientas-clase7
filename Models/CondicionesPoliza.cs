@@ -1,27 +1,30 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Seguroquesi.Enums;
 
-namespace clase7.Models
+
+namespace Seguroquesi.Models
 {
     public class CondicionesPoliza
     {
         [Key, ForeignKey("Poliza")]
         public Guid PolizaId { get; set; } // Es clave primaria y foránea al mismo tiempo.
 
-        public Poliza Poliza { get; set; }  //Relación 1 a 1 con Póliza.
+        public required Poliza Poliza { get; set; }  //Relación 1 a 1 con Póliza.
 
-        public string Generales { get; set; }
-        public string Particulares { get; set; }
-        public string Especiales { get; set; }
-        public string Exclusiones { get; set; }
-        public string Obligaciones { get; set; }
-        public string Derechos { get; set; }
-        public string Reclamaciones { get; set; }
-        public string Cancelacion { get; set; }
-        public string Renovacion { get; set; }
-        public string Modificacion { get; set; }
-        public string Suspensiones { get; set; }
-        public string Indemnizacion { get; set; }
+        public required string Generales { get; set; }
+        public required string Particulares { get; set; }
+        public required string Especiales { get; set; }
+        public required string Exclusiones { get; set; }
+        public required string Obligaciones { get; set; }
+        public required string Derechos { get; set; }
+        public required string Reclamaciones { get; set; }
+        public required string Cancelacion { get; set; }
+        public required string Renovacion { get; set; }
+        public required string Modificacion { get; set; }
+        public required string Suspensiones { get; set; }
+        public required string Indemnizacion { get; set; }
     }
 }

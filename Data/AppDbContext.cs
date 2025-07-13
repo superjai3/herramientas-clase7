@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using clase7.Models;
+using Seguroquesi.Models;
 
-namespace clase7.Data
+namespace Seguroquesi.Data
 {
     public class AppDbContext : DbContext
     {
@@ -19,19 +19,20 @@ namespace clase7.Data
         public DbSet<CoberturaAdicional> CoberturasAdicionales { get; set; }
         public DbSet<CondicionesPoliza> CondicionesPolizas { get; set; }
         public DbSet<Nacionalidad> Nacionalidades { get; set; }
+        public DbSet<CoberturaAdicionalCoche> CoberturasAdicionalesCoche { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Relaciones uno a muchos => Póliza - CondicionesPoliza
+            // Relaciones uno a uno => Póliza - CondicionesPoliza
             modelBuilder.Entity<Poliza>()
-                .HasOne(p => p.Condiciones)
+                .HasOne(p => p.CondicionesPoliza)
                 .WithOne(c => c.Poliza)
                 .HasForeignKey<CondicionesPoliza>(c => c.PolizaId);
 
-            // Relaciones uno a muchos => Póliza - Cotización
+            // Relaciones uno a uno => Póliza - Cotización
             modelBuilder.Entity<Poliza>()
                 .HasOne(p => p.Cotizacion)
                 .WithOne(c => c.Poliza)
@@ -39,8 +40,8 @@ namespace clase7.Data
 
             // Relaciones uno a muchos => ProductoSeguro - CoberturaAdicionalCoche
             modelBuilder.Entity<ProductoSeguro>()
-                .HasMany(p => p.CoberturaAdicionalCoche)
-                .WithOne()
+                .HasMany(p => p.CoberturasAdicionalesCoche)
+                .WithOne(c => c.ProductoSeguro)
                 .HasForeignKey(c => c.ProductoSeguroId);
 
             // Relaciones uno a muchos => DocumentoAdjunto - Poliza
@@ -54,7 +55,7 @@ namespace clase7.Data
                 .HasOne(s => s.Poliza)
                 .WithMany(p => p.Siniestros)
                 .HasForeignKey(s => s.PolizaId);
-
         }
+
     }
 }

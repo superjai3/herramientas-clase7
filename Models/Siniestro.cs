@@ -1,13 +1,22 @@
-namespace clase7.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Seguroquesi.Enums;
 
-public class Siniestro
+
+namespace Seguroquesi.Models
 {
-    public Guid Id { get; set; } // Identificador único del siniestro
-    public Guid PolizaId { get; set; } // Cada siniestro pertenece a una sola póliza, y guarda la clave foránea PolizaId.
-    public Poliza Poliza { get; set; } // cada siniestro pertenece a una sola póliza, y guarda la clave foránea PolizaId.
 
-    public DateTime FechaSiniestro { get; set; }
-    public string Descripcion { get; set; }
-    public string Estado { get; set; } // En Revisión, Aprobado, Rechazado
-    public string Observaciones { get; set; }
+    public class Siniestro
+    {
+        public Guid Id { get; set; } // Identificador único del siniestro
+        public Guid PolizaId { get; set; } // Cada siniestro pertenece a una sola póliza, y guarda la clave foránea PolizaId.
+        public required Poliza Poliza { get; set; } // cada siniestro pertenece a una sola póliza, y guarda la clave foránea PolizaId.
+
+        public DateTime FechaSiniestro { get; set; }
+        public required string Descripcion { get; set; }
+        public required string Estado { get; set; } // En Revisión, Aprobado, Rechazado
+        public required string Observaciones { get; set; }
+    }
 }

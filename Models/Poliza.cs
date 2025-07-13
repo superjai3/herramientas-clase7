@@ -1,46 +1,55 @@
-namespace clase7.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Seguroquesi.Enums;
 
-public class Poliza
+namespace Seguroquesi.Models
 {
-    public Guid Id { get; set; }    // Identificador único de la póliza
-    public string NumeroPoliza { get; set; }    // Número de la póliza, único por aseguradora
-    public DateTime FechaInicio { get; set; }   // Fecha de inicio de la póliza
-    public DateTime FechaFin { get; set; }  // Fecha de fin de la póliza
+    public class Poliza
+    {
+        public Guid Id { get; set; }
+        public required string NumeroPoliza { get; set; }
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin { get; set; }
 
-    public Guid TomadorId { get; set; } // Identificador del Tomador al que pertenece la póliza
-    public Tomador Tomador { get; set; }    // Tomador al que pertenece la póliza
+        public Guid TomadorId { get; set; }
+        public required Tomador Tomador { get; set; }
 
-    //Relaciones
-    public Guid CotizacionId { get; set; }  // Clave foránea
-    [ForeignKey("CotizacionId")]
-    public Cotizacion Cotizacion { get; set; }
+        public Guid CotizacionId { get; set; }
+        [ForeignKey("CotizacionId")]
+        public required Cotizacion Cotizacion { get; set; }
 
-    public Guid ProductoSeguroId { get; set; }  // Identificador del producto de seguro asociado a la póliza
-    public ProductoSeguro ProductoSeguro { get; set; }  // Producto de seguro asociado a la póliza
+        public Guid ProductoSeguroId { get; set; }
+        public required ProductoSeguro ProductoSeguro { get; set; }
 
-    public RamoId Tipo { get; set; } // Auto, Vida, Hogar, etc.
-    public EstadoPoliza Estado { get; set; } // Activa, Vencida, Cancelada
-    public MonedaPoliza Moneda { get; set; } // ARS, USD, etc.
-    public string Pais { get; set; }
+        public RamoId Tipo { get; set; }
+        public EstadoPoliza Estado { get; set; }
+        public MonedaPoliza Moneda { get; set; }
 
-    public decimal MontoTotal { get; set; } // Monto total de la póliza
-    public decimal Prima { get; set; }  // Prima de la póliza
-    public decimal MontoEstimado { get; set; }  // Monto estimado de la póliza
-    public decimal MontoPagado { get; set; }    // Monto pagado hasta la fecha
-    public decimal MontoPendiente { get; set; } // Monto pendiente de pago
-    public decimal MontoRestante { get; set; }  // Monto restante de la póliza
+        public Pais Pais { get; set; } // Si quieres que sea enum
+        // public string Pais { get; set; } // O como string libre
 
-    public Cobertura Cobertura { get; set; } // Cobertura del seguro, por ejemplo: Todo Riesgo, Responsabilidad Civil, etc.
+        public decimal MontoTotal { get; set; }
+        public decimal Prima { get; set; }
+        public decimal MontoEstimado { get; set; }
+        public decimal MontoPagado { get; set; }
+        public decimal MontoPendiente { get; set; }
+        public decimal MontoRestante { get; set; }
 
-    public string Descripcion { get; set; } // Descripción de la póliza
-    public string Observaciones { get; set; } // Observaciones de la póliza
 
-    public DateTime FechaVencimiento { get; set; } // Fecha de vencimiento de la póliza
-    public DateTime FechaUltimoPago { get; set; } // Fecha del último pago realizado
-    public DateTime FechaCreacion { get; set; } // Fecha de creación de la póliza
-    public DateTime FechaModificacion { get; set; } // Fecha de última modificación de la póliza
+        public CoberturaCoche Cobertura { get; set; }
+        public required string Descripcion { get; set; }
+        public required string Observaciones { get; set; }
 
-    public CondicionesPoliza CondicionesPoliza { get; set; } // Condiciones de la póliza, incluyendo generales, particulares, exclusiones, etc.
-    public ICollection<Siniestro> Siniestros { get; set; } = new List<Siniestro>(); // Cada póliza puede tener múltiples siniestros
-    public ICollection<DocumentoAdjunto> DocumentosAdjuntos { get; set; } = new List<DocumentoAdjunto>();   // Documentos adjuntos a la póliza
+        public DateTime FechaVencimiento { get; set; }
+        public DateTime FechaUltimoPago { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
+
+        public CondicionesPoliza? CondicionesPoliza { get; set; }
+
+        public ICollection<Siniestro> Siniestros { get; set; } = new List<Siniestro>();
+        public ICollection<DocumentoAdjunto> DocumentosAdjuntos { get; set; } = new List<DocumentoAdjunto>();
+    }
 }

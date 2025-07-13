@@ -1,8 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using clase7.Models;
+using Seguroquesi.Enums;
+using Seguroquesi.Helpers;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Seguroquesi.Models;
 
-namespace clase7.Controllers;
+namespace Seguroquesi.Controllers;
 
 public class HomeController : Controller
 {
@@ -12,6 +15,25 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
+
+
+
+    public IActionResult Crear()
+    {
+        var provincias = Enum.GetValues(typeof(ProvinciaEspana))
+            .Cast<ProvinciaEspana>()
+            .Select(p => new SelectListItem
+            {
+                Value = p.ToString(),
+                Text = EnumHelper.GetDisplayName(p)
+            }).ToList();
+
+        ViewBag.Provincias = provincias;
+
+        return View();
+    }
+
+
 
     public IActionResult Index()
     {

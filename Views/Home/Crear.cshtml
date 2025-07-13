@@ -1,0 +1,17 @@
+@model string
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+<h3>Seleccionar provincia</h3>
+
+<form asp-action="Crear" method="post">
+    <div class="form-group">
+        <label for="provincia">Provincia:</label>
+        <select id="provincia" name="provincia" class="form-control">
+            @foreach (var item in (ViewBag.Provincias as List<SelectListItem>) ?? new List<SelectListItem>())
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
