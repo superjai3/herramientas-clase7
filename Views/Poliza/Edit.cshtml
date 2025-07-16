@@ -1,0 +1,123 @@
+acion\Seguroquesi\Views\Poliza\Edit.cshtml
+@model Seguroquesi.Models.Poliza
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Poliza</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NumeroPoliza" class="control-label"></label>
+                <input asp-for="NumeroPoliza" class="form-control" />
+                <span asp-validation-for="NumeroPoliza" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaInicio" class="control-label"></label>
+                <input asp-for="FechaInicio" class="form-control" type="date" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaFin" class="control-label"></label>
+                <input asp-for="FechaFin" class="form-control" type="date" />
+                <span asp-validation-for="FechaFin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CotizacionId" class="control-label"></label>
+                <input asp-for="CotizacionId" class="form-control" />
+                <span asp-validation-for="CotizacionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+                <select asp-for="Tipo" class="form-control"
+                        asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.RamoId>()"></select>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Moneda" class="control-label"></label>
+                <select asp-for="Moneda" class="form-control"
+                        asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.MonedaPoliza>()"></select>
+                <span asp-validation-for="Moneda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pais" class="control-label"></label>
+                <select asp-for="Pais" class="form-control"
+                        asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.Pais>()"></select>
+                <span asp-validation-for="Pais" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prima" class="control-label"></label>
+                <input asp-for="Prima" class="form-control" />
+                <span asp-validation-for="Prima" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cobertura" class="control-label"></label>
+                <select asp-for="Cobertura" class="form-control"
+                        asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.CoberturaCoche>()"></select>
+                <span asp-validation-for="Cobertura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroDocumento" class="control-label"></label>
+                <input asp-for="NumeroDocumento" class="form-control" />
+                <span asp-validation-for="NumeroDocumento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoDocumentoPersona" class="control-label"></label>
+                <select asp-for="TipoDocumentoPersona" class="form-control"
+                        asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.TipoDocumentoPersona>()"></select>
+                <span asp-validation-for="TipoDocumentoPersona" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreTomador" class="control-label"></label>
+                <input asp-for="NombreTomador" class="form-control" />
+                <span asp-validation-for="NombreTomador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApellidoTomador" class="control-label"></label>
+                <input asp-for="ApellidoTomador" class="form-control" />
+                <span asp-validation-for="ApellidoTomador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ciudad" class="control-label"></label>
+                <input asp-for="Ciudad" class="form-control" />
+                <span asp-validation-for="Ciudad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodigoPostal" class="control-label"></label>
+                <input asp-for="CodigoPostal" class="form-control" />
+                <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaNacimiento" class="control-label"></label>
+                <input asp-for="FechaNacimiento" class="form-control" type="date" />
+                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genero" class="control-label"></label>
+                <select asp-for="Genero" class="form-control"
+                        asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.Genero>()"></select>
+                <span asp-validation-for="Genero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

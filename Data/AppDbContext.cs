@@ -8,6 +8,9 @@ namespace Seguroquesi.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
 
+        // ⚠️ Este constructor es SOLO para el generador en tiempo de diseño
+        public AppDbContext() { }
+
         public DbSet<Tomador> Tomadores { get; set; }
         public DbSet<Aseguradora> Aseguradoras { get; set; }
         public DbSet<ProductoSeguro> ProductosSeguros { get; set; }

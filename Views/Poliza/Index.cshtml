@@ -1,0 +1,66 @@
+@model IEnumerable<Seguroquesi.Models.Poliza>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Pólizas";
+}
+
+<h1>Pólizas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.NumeroPoliza)</th>
+            <th>@Html.DisplayNameFor(m => m.FechaInicio)</th>
+            <th>@Html.DisplayNameFor(m => m.FechaFin)</th>
+            <th>@Html.DisplayNameFor(m => m.Cotizacion)</th>
+            <th>@Html.DisplayNameFor(m => m.Tipo)</th>
+            <th>@Html.DisplayNameFor(m => m.Moneda)</th>
+            <th>@Html.DisplayNameFor(m => m.Pais)</th>
+            <th>@Html.DisplayNameFor(m => m.Prima)</th>
+            <th>@Html.DisplayNameFor(m => m.Cobertura)</th>
+            <th>@Html.DisplayNameFor(m => m.NumeroDocumento)</th>
+            <th>@Html.DisplayNameFor(m => m.TipoDocumentoPersona)</th>
+            <th>@Html.DisplayNameFor(m => m.NombreTomador)</th>
+            <th>@Html.DisplayNameFor(m => m.ApellidoTomador)</th>
+            <th>@Html.DisplayNameFor(m => m.Ciudad)</th>
+            <th>@Html.DisplayNameFor(m => m.CodigoPostal)</th>
+            <th>@Html.DisplayNameFor(m => m.FechaNacimiento)</th>
+            <th>@Html.DisplayNameFor(m => m.Genero)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NumeroPoliza</td>
+                <td>@item.FechaInicio.ToString("dd/MM/yyyy")</td>
+                <td>@item.FechaFin.ToString("dd/MM/yyyy")</td>
+                <td>@item.Cotizacion?.Id</td>
+                <td>@item.Tipo</td>
+                <td>@item.Moneda</td>
+                <td>@item.Pais</td>
+                <td>@item.Prima.ToString("C", CultureInfo.CurrentCulture)</td>
+                <td>@item.Cobertura</td>
+                <td>@item.NumeroDocumento</td>
+                <td>@item.TipoDocumentoPersona</td>
+                <td>@item.NombreTomador</td>
+                <td>@item.ApellidoTomador</td>
+                <td>@item.Ciudad</td>
+                <td>@item.CodigoPostal</td>
+                <td>@item.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td>@item.Genero</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

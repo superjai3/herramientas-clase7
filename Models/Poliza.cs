@@ -8,47 +8,61 @@ namespace Seguroquesi.Models
 {
     public class Poliza
     {
+        [Key]
         public Guid Id { get; set; }
-        public required string NumeroPoliza { get; set; }
+
+        [Required]
+        public string NumeroPoliza { get; set; } = string.Empty;
+
+        [Required]
         public DateTime FechaInicio { get; set; }
+
+        [Required]
         public DateTime FechaFin { get; set; }
 
-        public Guid TomadorId { get; set; }
-        public required Tomador Tomador { get; set; }
-
+        // Relaciones
         public Guid CotizacionId { get; set; }
         [ForeignKey("CotizacionId")]
-        public required Cotizacion Cotizacion { get; set; }
+        public Cotizacion? Cotizacion { get; set; }
 
-        public Guid ProductoSeguroId { get; set; }
-        public required ProductoSeguro ProductoSeguro { get; set; }
-
+        // Enums
+        [Display(Name = "Ramo")]
         public RamoId Tipo { get; set; }
-        public EstadoPoliza Estado { get; set; }
+
         public MonedaPoliza Moneda { get; set; }
-
-        public Pais Pais { get; set; } // Si quieres que sea enum
-        // public string Pais { get; set; } // O como string libre
-
-        public decimal MontoTotal { get; set; }
-        public decimal Prima { get; set; }
-        public decimal MontoEstimado { get; set; }
-        public decimal MontoPagado { get; set; }
-        public decimal MontoPendiente { get; set; }
-        public decimal MontoRestante { get; set; }
-
-
+        public Pais Pais { get; set; }
         public CoberturaCoche Cobertura { get; set; }
-        public required string Descripcion { get; set; }
-        public required string Observaciones { get; set; }
 
-        public DateTime FechaVencimiento { get; set; }
-        public DateTime FechaUltimoPago { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public DateTime FechaModificacion { get; set; }
+        // Valores económicos
+        public decimal Prima { get; set; }
 
+        // Datos del tomador y póliza
+        [Required]
+        public string NumeroDocumento { get; set; } = string.Empty;
+
+        [Required]
+        public TipoDocumentoPersona TipoDocumentoPersona { get; set; }
+
+        [Required]
+        public string NombreTomador { get; set; } = string.Empty;
+
+        [Required]
+        public string ApellidoTomador { get; set; } = string.Empty;
+
+        [Required]
+        public string Ciudad { get; set; } = string.Empty;
+
+        [Required]
+        public string CodigoPostal { get; set; } = string.Empty;
+
+        [Required]
+        public DateTime FechaNacimiento { get; set; }
+
+        [Required]
+        public Genero Genero { get; set; }
+
+        // Propiedades de navegación adicionales
         public CondicionesPoliza? CondicionesPoliza { get; set; }
-
         public ICollection<Siniestro> Siniestros { get; set; } = new List<Siniestro>();
         public ICollection<DocumentoAdjunto> DocumentosAdjuntos { get; set; } = new List<DocumentoAdjunto>();
     }

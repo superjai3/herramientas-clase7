@@ -11,12 +11,15 @@ namespace Seguroquesi.Models
         [Key]
         public Guid Id { get; set; }
 
-        // Nombres y apellidos
+        // Nombre Completo
         [Required]
         public required string PrimerNombre { get; set; }
         public required string SegundoNombre { get; set; }
+        [Required]
         public required string PrimerApellido { get; set; }
         public required string SegundoApellido { get; set; }
+        [Display(Name = "Nombre Completo")]
+        public string NombreCompleto => $"{PrimerNombre} {SegundoNombre} {PrimerApellido} {SegundoApellido}";
 
         // Información de contacto
         [Required, EmailAddress]
@@ -25,8 +28,8 @@ namespace Seguroquesi.Models
         [Required, Phone]
         public required string Telefono { get; set; }
 
-        [Column(TypeName = "varchar(50)")]
         [Required]
+        [Column(TypeName = "varchar(50)")]
         public required string Direccion { get; set; }
 
         // Ubicación (elije según país)
@@ -55,9 +58,9 @@ namespace Seguroquesi.Models
         public Genero Genero { get; set; }
 
         [Required]
-        public Pais Nacionalidad { get; set; } // Reutilizamos el enum Pais
+        public Pais Nacionalidad { get; set; }
 
-        public RolUsuario Rol { get; set; }
+        public RolUsuario Rol { get; set; } = RolUsuario.Cliente;
         public bool EsEmpresa { get; set; }
 
         // Relaciones
