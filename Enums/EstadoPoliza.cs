@@ -4,16 +4,22 @@ namespace Seguroquesi.Enums
 {
     public enum EstadoPoliza
     {
-        [Display(Name = "Activa")]
-        Activa,
+        [Display(Name = "En Emisión")]
+        EnProceso,
+
+        [Display(Name = "Emitida")]
+        Emitida,
+
+        [Display(Name = "Vigente")]
+        Aceptada,
+
+        [Display(Name = "Anulada")]
+        Rechazada,
 
         [Display(Name = "Vencida")]
-        Vencida,
+        Expirada,
 
-        [Display(Name = "Cancelada")]
-        Cancelada,
-
-        [Display(Name = "Pendiente de Pago")]
-        PendienteDePago
+        [Display(Name = "En Prorroga")]
+        Prorrogada
     }
 }

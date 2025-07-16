@@ -33,9 +33,9 @@ namespace Seguroquesi.Models
         public required string Direccion { get; set; }
 
         // Ubicación (elije según país)
-        public CiudadArgentina? CiudadArgentina { get; set; }
+        public Ciudad? Ciudad { get; set; }
         public CiudadEspana? CiudadEspana { get; set; }
-        public ProvinciaArgentina? ProvinciaArgentina { get; set; }
+        public Provincia? Provincia { get; set; }
         public ProvinciaEspana? ProvinciaEspana { get; set; }
 
         [Required]

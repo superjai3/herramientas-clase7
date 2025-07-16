@@ -2,9 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Seguroquesi.Enums
 {
-// PROVINCIAS ARGENTINA
+// CIUDADES DE ARGENTINA
 
-        public enum ProvinciaArgentina
+        public enum Ciudad
         {
         [Display(Name = "Buenos Aires")]
         BuenosAires,

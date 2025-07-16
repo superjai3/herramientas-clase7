@@ -14,6 +14,8 @@ namespace Seguroquesi.Models
         [Required]
         public string NumeroPoliza { get; set; } = string.Empty;
 
+        public EstadoPoliza EstadoPoliza { get; set; }
+
         [Required]
         public DateTime FechaInicio { get; set; }
 
@@ -50,7 +52,10 @@ namespace Seguroquesi.Models
         public string ApellidoTomador { get; set; } = string.Empty;
 
         [Required]
-        public string Ciudad { get; set; } = string.Empty;
+        public Ciudad Ciudad { get; set; }
+
+        [Required]
+        public Provincia Provincia { get; set; }
 
         [Required]
         public string CodigoPostal { get; set; } = string.Empty;

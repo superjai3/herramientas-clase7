@@ -11,8 +11,8 @@ using Seguroquesi.Data;
 namespace Seguroquesi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250716065553_UpdateCotizacionModel")]
-    partial class UpdateCotizacionModel
+    [Migration("20250716202939_AgregaCiudadProvinciaArgentinaEnPoliza")]
+    partial class AgregaCiudadProvinciaArgentinaEnPoliza
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -268,17 +268,24 @@ namespace Seguroquesi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ApellidoTomador")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Ciudad")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Cobertura")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("CodigoPostal")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("CotizacionId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Estado")
+                    b.Property<int>("EstadoPoliza")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("FechaFin")
@@ -287,14 +294,24 @@ namespace Seguroquesi.Migrations
                     b.Property<DateTime>("FechaInicio")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Genero")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Moneda")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("NumeroPoliza")
+                    b.Property<string>("NombreTomador")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Observaciones")
+                    b.Property<string>("NumeroDocumento")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NumeroPoliza")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -304,21 +321,22 @@ namespace Seguroquesi.Migrations
                     b.Property<decimal>("Prima")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ProductoSeguroId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Provincia")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Tipo")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("TomadorId")
+                    b.Property<int>("TipoDocumentoPersona")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid?>("TomadorId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CotizacionId")
                         .IsUnique();
-
-                    b.HasIndex("ProductoSeguroId");
 
                     b.HasIndex("TomadorId");
 
@@ -571,23 +589,11 @@ namespace Seguroquesi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Seguroquesi.Models.ProductoSeguro", "ProductoSeguro")
-                        .WithMany()
-                        .HasForeignKey("ProductoSeguroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Seguroquesi.Models.Tomador", "Tomador")
+                    b.HasOne("Seguroquesi.Models.Tomador", null)
                         .WithMany("Polizas")
-                        .HasForeignKey("TomadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TomadorId");
 
                     b.Navigation("Cotizacion");
-
-                    b.Navigation("ProductoSeguro");
-
-                    b.Navigation("Tomador");
                 });
 
             modelBuilder.Entity("Seguroquesi.Models.ProductoSeguro", b =>

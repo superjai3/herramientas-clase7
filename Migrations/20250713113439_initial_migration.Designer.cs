@@ -415,7 +415,7 @@ namespace Seguroquesi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("CiudadArgentina")
+                    b.Property<int?>("Ciudad")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("CiudadEspana")
@@ -467,7 +467,7 @@ namespace Seguroquesi.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProvinciaArgentina")
+                    b.Property<int?>("Provincia")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("ProvinciaEspana")

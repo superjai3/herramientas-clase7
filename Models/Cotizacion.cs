@@ -28,7 +28,7 @@ namespace Seguroquesi.Models
         public ProductoSeguro? ProductoSeguro { get; set; }
 
         public decimal? MontoEstimado { get; set; }
-        public EstadoCotizacion? Estado { get; set; }
+        public EstadoPoliza? Estado { get; set; }
 
         public Poliza? Poliza { get; set; }  // Navegación inversa
     }

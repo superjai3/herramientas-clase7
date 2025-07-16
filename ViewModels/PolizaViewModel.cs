@@ -13,7 +13,6 @@ namespace Seguroquesi.ViewModels
             NombreTomador = string.Empty;
             ApellidoTomador = string.Empty;
             NumeroDocumento = string.Empty;
-            Ciudad = string.Empty;
             CodigoPostal = string.Empty;
         }
 
@@ -48,7 +47,15 @@ namespace Seguroquesi.ViewModels
 
         [Required]
         [Display(Name = "Ciudad")]
-        public string Ciudad { get; set; }
+        public Ciudad Ciudad { get; set; }
+
+        [Required]
+        [Display(Name = "Provincia")]
+        public Provincia Provincia { get; set; }
+
+        [Required]
+        [Display(Name = "Pais")]
+        public Pais Pais { get; set; }
 
         [Required]
         [Display(Name = "Código Postal")]
@@ -72,9 +79,6 @@ namespace Seguroquesi.ViewModels
 
         [Required]
         public MonedaPoliza Moneda { get; set; }
-
-        [Required]
-        public Pais Pais { get; set; }
 
         [Required]
         public decimal Prima { get; set; }

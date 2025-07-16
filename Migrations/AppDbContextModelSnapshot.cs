@@ -269,9 +269,8 @@ namespace Seguroquesi.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Ciudad")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Ciudad")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Cobertura")
                         .HasColumnType("INTEGER");
@@ -282,6 +281,9 @@ namespace Seguroquesi.Migrations
 
                     b.Property<Guid>("CotizacionId")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("EstadoPoliza")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("FechaFin")
                         .HasColumnType("TEXT");
@@ -315,6 +317,9 @@ namespace Seguroquesi.Migrations
 
                     b.Property<decimal>("Prima")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Provincia")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Tipo")
                         .HasColumnType("INTEGER");
@@ -413,7 +418,7 @@ namespace Seguroquesi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("CiudadArgentina")
+                    b.Property<int?>("Ciudad")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("CiudadEspana")
@@ -465,7 +470,7 @@ namespace Seguroquesi.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProvinciaArgentina")
+                    b.Property<int?>("Provincia")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("ProvinciaEspana")

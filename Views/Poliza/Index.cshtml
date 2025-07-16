@@ -17,7 +17,7 @@
             <th>@Html.DisplayNameFor(m => m.NumeroPoliza)</th>
             <th>@Html.DisplayNameFor(m => m.FechaInicio)</th>
             <th>@Html.DisplayNameFor(m => m.FechaFin)</th>
-            <th>@Html.DisplayNameFor(m => m.Cotizacion)</th>
+            <th>@Html.DisplayNameFor(m => m.EstadoPoliza)</th>
             <th>@Html.DisplayNameFor(m => m.Tipo)</th>
             <th>@Html.DisplayNameFor(m => m.Moneda)</th>
             <th>@Html.DisplayNameFor(m => m.Pais)</th>
@@ -41,7 +41,7 @@
                 <td>@item.NumeroPoliza</td>
                 <td>@item.FechaInicio.ToString("dd/MM/yyyy")</td>
                 <td>@item.FechaFin.ToString("dd/MM/yyyy")</td>
-                <td>@item.Cotizacion?.Id</td>
+                <td>@item.EstadoPoliza</td>
                 <td>@item.Tipo</td>
                 <td>@item.Moneda</td>
                 <td>@item.Pais</td>
