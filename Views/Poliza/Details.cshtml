@@ -1,53 +1,57 @@
 @model Seguroquesi.Models.Poliza
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalle de Póliza";
 }
 
-<h1>Details</h1>
+<h1>Detalle de Póliza</h1>
 
 <div>
-    <h4>Poliza</h4>
+    <h4>Póliza</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.NumeroPoliza)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.NumeroPoliza)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.FechaInicio)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.FechaInicio)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.FechaFin)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.FechaFin)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cotizacion)</dt>
-        <dd class="col-sm-10">
-            @(Model.Cotizacion != null ? Model.Cotizacion.Id.ToString() : "")
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NumeroPoliza)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NumeroPoliza)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FechaInicio)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.FechaInicio)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FechaFin)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.FechaFin)</dd>
+        <dt class="col-sm-3">Cotización</dt>
+        <dd class="col-sm-9">
+            @(Model.Cotizacion != null ? Model.Cotizacion.NumeroCotizacion : "")
         </dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Tipo)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Tipo)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Moneda)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Moneda)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Pais)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Pais)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Prima)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Prima)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cobertura)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Cobertura)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.NumeroDocumento)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.NumeroDocumento)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TipoDocumentoPersona)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.TipoDocumentoPersona)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.NombreTomador)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.NombreTomador)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ApellidoTomador)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.ApellidoTomador)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Ciudad)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Ciudad)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CodigoPostal)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.CodigoPostal)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.FechaNacimiento)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.FechaNacimiento)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Genero)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Genero)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Tipo)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Tipo)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Moneda)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Moneda)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Pais)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Pais)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Prima)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Prima)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Cobertura)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Cobertura)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NumeroDocumento)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NumeroDocumento)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.TipoDocumentoPersona)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.TipoDocumentoPersona)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NombreTomador)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NombreTomador)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ApellidoTomador)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.ApellidoTomador)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Ciudad)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Ciudad)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Provincia)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Provincia)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CodigoPostal)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.CodigoPostal)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FechaNacimiento)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.FechaNacimiento)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Genero)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Genero)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.EstadoPoliza)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.EstadoPoliza)</dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+</div>

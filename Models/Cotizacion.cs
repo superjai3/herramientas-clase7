@@ -18,6 +18,18 @@ namespace Seguroquesi.Models
         public string NombreTomador { get; set; } = string.Empty;
 
         [Required]
+        public string NumeroDocumento { get; set; } = string.Empty;
+
+        [Required]
+        public string CodigoPostal { get; set; } = string.Empty;
+
+        [Required]
+        public DateTime FechaNacimiento { get; set; }
+
+        [Required]
+        public decimal Prima { get; set; }
+
+        [Required]
         public string ApellidoTomador { get; set; } = string.Empty;
 
         [Required]

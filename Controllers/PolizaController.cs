@@ -27,14 +27,68 @@ namespace Seguroquesi.Controllers
         }
 
         // GET: Poliza/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(string? numeroCotizacion)
         {
-            var vm = new PolizaViewModel
+            PolizaViewModel vm;
+
+            if (!string.IsNullOrEmpty(numeroCotizacion))
             {
-                NumeroCotizacion = GenerarNumeroCotizacion(),
-                FechaInicio = DateTime.Today,
-                FechaFin = DateTime.Today.AddYears(1)
-            };
+                // Buscar cotización existente
+                var cotizacion = await _context.Cotizaciones
+                    .Include(c => c.Poliza)
+                    .FirstOrDefaultAsync(c => c.NumeroCotizacion == numeroCotizacion);
+
+                if (cotizacion == null)
+                {
+                    TempData["Mensaje"] = "No se encontró la cotización.";
+                    vm = new PolizaViewModel
+                    {
+                        NumeroCotizacion = GenerarNumeroCotizacion(),
+                        FechaInicio = DateTime.Today,
+                        FechaFin = DateTime.Today.AddYears(1)
+                    };
+                }
+                else if (cotizacion.Poliza != null && cotizacion.Poliza.EstadoPoliza == EstadoPoliza.Emitida)
+                {
+                    TempData["Mensaje"] = "La póliza ya fue emitida y no puede modificarse.";
+                    return RedirectToAction(nameof(Details), new { id = cotizacion.Poliza.Id });
+                }
+                else
+                {
+                    // Mapear datos a ViewModel, primero desde Cotizacion y si no existe desde Poliza
+                    vm = new PolizaViewModel
+                    {
+                        NumeroCotizacion = cotizacion.NumeroCotizacion,
+                        NombreTomador = cotizacion.NombreTomador,
+                        ApellidoTomador = cotizacion.ApellidoTomador,
+                        TipoDocumentoPersona = cotizacion.TipoDocumentoPersona,
+                        NumeroDocumento = !string.IsNullOrEmpty(cotizacion.NumeroDocumento) ? cotizacion.NumeroDocumento : (cotizacion.Poliza?.NumeroDocumento ?? ""),
+                        CodigoPostal = !string.IsNullOrEmpty(cotizacion.CodigoPostal) ? cotizacion.CodigoPostal : (cotizacion.Poliza?.CodigoPostal ?? ""),
+                        FechaNacimiento = cotizacion.FechaNacimiento != default ? cotizacion.FechaNacimiento : (cotizacion.Poliza?.FechaNacimiento ?? DateTime.Today),
+                        Prima = cotizacion.Prima != default ? cotizacion.Prima : (cotizacion.Poliza?.Prima ?? 0),
+                        Ciudad = cotizacion.Poliza?.Ciudad ?? 0,
+                        Provincia = cotizacion.Poliza?.Provincia ?? 0,
+                        Pais = cotizacion.Poliza?.Pais ?? 0,
+                        Genero = cotizacion.Poliza?.Genero ?? 0,
+                        Tipo = cotizacion.Poliza?.Tipo ?? 0,
+                        Cobertura = cotizacion.Poliza?.Cobertura ?? 0,
+                        Moneda = cotizacion.Poliza?.Moneda ?? 0,
+                        FechaInicio = cotizacion.Poliza?.FechaInicio ?? DateTime.Today,
+                        FechaFin = cotizacion.Poliza?.FechaFin ?? DateTime.Today.AddYears(1)
+                    };
+                }
+            }
+            else
+            {
+                // Nueva cotización
+                vm = new PolizaViewModel
+                {
+                    NumeroCotizacion = GenerarNumeroCotizacion(),
+                    FechaInicio = DateTime.Today,
+                    FechaFin = DateTime.Today.AddYears(1)
+                };
+            }
+
             return View(vm);
         }
 
@@ -68,26 +122,93 @@ namespace Seguroquesi.Controllers
             // Calcular la prima antes de guardar
             vm.Prima = CalcularPrima(vm.Tipo, vm.Cobertura);
 
-            // Guardar cotización o emitir póliza según la acción
+            // Buscar cotización existente por número
+            var cotizacion = await _context.Cotizaciones
+                .Include(c => c.Poliza)
+                .FirstOrDefaultAsync(c => c.NumeroCotizacion == vm.NumeroCotizacion);
+
             if (action == "Guardar")
             {
-                // Guardar como cotización (no se emite póliza)
-                var cotizacion = new Cotizacion
+                if (cotizacion == null)
                 {
-                    Id = Guid.NewGuid(),
-                    NumeroCotizacion = vm.NumeroCotizacion,
-                    FechaCreacion = DateTime.Now,
-                    NombreTomador = vm.NombreTomador,
-                    ApellidoTomador = vm.ApellidoTomador,
-                    TipoDocumentoPersona = vm.TipoDocumentoPersona
-                };
-                _context.Cotizaciones.Add(cotizacion);
+                    // Nueva cotización
+                    cotizacion = new Cotizacion
+                    {
+                        Id = Guid.NewGuid(),
+                        NumeroCotizacion = vm.NumeroCotizacion,
+                        FechaCreacion = DateTime.Now,
+                        NombreTomador = vm.NombreTomador,
+                        ApellidoTomador = vm.ApellidoTomador,
+                        TipoDocumentoPersona = vm.TipoDocumentoPersona,
+                        NumeroDocumento = vm.NumeroDocumento,
+                        CodigoPostal = vm.CodigoPostal,
+                        FechaNacimiento = vm.FechaNacimiento,
+                        Prima = vm.Prima
+                    };
+                    _context.Cotizaciones.Add(cotizacion);
+                }
+                else
+                {
+                    // Actualizar cotización existente (si no fue emitida)
+                    if (cotizacion.Poliza != null && cotizacion.Poliza.EstadoPoliza == EstadoPoliza.Emitida)
+                    {
+                        TempData["Mensaje"] = "La póliza ya fue emitida y no puede modificarse.";
+                        return RedirectToAction(nameof(Details), new { id = cotizacion.Poliza.Id });
+                    }
+                    cotizacion.NombreTomador = vm.NombreTomador;
+                    cotizacion.ApellidoTomador = vm.ApellidoTomador;
+                    cotizacion.TipoDocumentoPersona = vm.TipoDocumentoPersona;
+                    cotizacion.NumeroDocumento = vm.NumeroDocumento;
+                    cotizacion.CodigoPostal = vm.CodigoPostal;
+                    cotizacion.FechaNacimiento = vm.FechaNacimiento;
+                    cotizacion.Prima = vm.Prima;
+                    _context.Cotizaciones.Update(cotizacion);
+                }
                 await _context.SaveChangesAsync();
                 TempData["Mensaje"] = "Cotización guardada correctamente.";
                 return RedirectToAction(nameof(Index));
             }
             else if (action == "Emitir")
             {
+                // Si ya fue emitida, bloquear
+                if (cotizacion != null && cotizacion.Poliza != null && cotizacion.Poliza.EstadoPoliza == EstadoPoliza.Emitida)
+                {
+                    TempData["Mensaje"] = "La póliza ya fue emitida y no puede modificarse.";
+                    return RedirectToAction(nameof(Details), new { id = cotizacion.Poliza.Id });
+                }
+
+                // Guardar cotización si no existe
+                if (cotizacion == null)
+                {
+                    cotizacion = new Cotizacion
+                    {
+                        Id = Guid.NewGuid(),
+                        NumeroCotizacion = vm.NumeroCotizacion,
+                        FechaCreacion = DateTime.Now,
+                        NombreTomador = vm.NombreTomador,
+                        ApellidoTomador = vm.ApellidoTomador,
+                        TipoDocumentoPersona = vm.TipoDocumentoPersona,
+                        NumeroDocumento = vm.NumeroDocumento,
+                        CodigoPostal = vm.CodigoPostal,
+                        FechaNacimiento = vm.FechaNacimiento,
+                        Prima = vm.Prima
+                    };
+                    _context.Cotizaciones.Add(cotizacion);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    cotizacion.NombreTomador = vm.NombreTomador;
+                    cotizacion.ApellidoTomador = vm.ApellidoTomador;
+                    cotizacion.TipoDocumentoPersona = vm.TipoDocumentoPersona;
+                    cotizacion.NumeroDocumento = vm.NumeroDocumento;
+                    cotizacion.CodigoPostal = vm.CodigoPostal;
+                    cotizacion.FechaNacimiento = vm.FechaNacimiento;
+                    cotizacion.Prima = vm.Prima;
+                    _context.Cotizaciones.Update(cotizacion);
+                    await _context.SaveChangesAsync();
+                }
+
                 // Guardar cliente si no existe
                 var cliente = await _context.Clientes.FirstOrDefaultAsync(c =>
                     c.NumeroIdentificacion == vm.NumeroDocumento);
@@ -111,22 +232,10 @@ namespace Seguroquesi.Controllers
                         CodigoPostal = int.TryParse(vm.CodigoPostal, out var cp) ? cp : 0,
                         Documento = vm.TipoDocumentoPersona,
                         NumeroDocumento = vm.NumeroDocumento,
-                    }; _context.Clientes.Add(cliente);
+                    };
+                    _context.Clientes.Add(cliente);
                     await _context.SaveChangesAsync();
                 }
-
-                // Guardar cotización
-                var cotizacion = new Cotizacion
-                {
-                    Id = Guid.NewGuid(),
-                    NumeroCotizacion = vm.NumeroCotizacion,
-                    FechaCreacion = DateTime.Now,
-                    NombreTomador = vm.NombreTomador,
-                    ApellidoTomador = vm.ApellidoTomador,
-                    TipoDocumentoPersona = vm.TipoDocumentoPersona
-                };
-                _context.Cotizaciones.Add(cotizacion);
-                await _context.SaveChangesAsync();
 
                 // Emitir póliza
                 var poliza = new Poliza
@@ -161,6 +270,22 @@ namespace Seguroquesi.Controllers
             ModelState.AddModelError("", "Acción no válida.");
             vm.NumeroCotizacion = GenerarNumeroCotizacion();
             return View(vm);
+        }
+
+        // GET: Poliza/Details/5 (solo lectura)
+        public async Task<IActionResult> Details(Guid? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var poliza = await _context.Polizas
+                .Include(p => p.Cotizacion)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (poliza == null)
+                return NotFound();
+
+            return View(poliza); // Crea una vista Details solo lectura
         }
 
         // Método para generar el número de cotización correlativo
@@ -206,6 +331,13 @@ namespace Seguroquesi.Controllers
             if (poliza == null)
                 return NotFound();
 
+            // Si la póliza está emitida, no permitir edición
+            if (poliza.EstadoPoliza == EstadoPoliza.Emitida)
+            {
+                TempData["Mensaje"] = "La póliza ya fue emitida y no puede modificarse.";
+                return RedirectToAction(nameof(Details), new { id = poliza.Id });
+            }
+
             return View(poliza);
         }
 
@@ -216,6 +348,13 @@ namespace Seguroquesi.Controllers
         {
             if (id != poliza.Id)
                 return NotFound();
+
+            // Si la póliza está emitida, no permitir edición
+            if (poliza.EstadoPoliza == EstadoPoliza.Emitida)
+            {
+                TempData["Mensaje"] = "La póliza ya fue emitida y no puede modificarse.";
+                return RedirectToAction(nameof(Details), new { id = poliza.Id });
+            }
 
             if (ModelState.IsValid)
             {

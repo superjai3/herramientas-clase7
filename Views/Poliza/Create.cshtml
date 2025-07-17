@@ -4,13 +4,26 @@
     ViewData["Title"] = "Tarificador de Seguros";
 }
 
-<h1>Crear Póliza</h1>
+<h1>Cotizador de Pólizas</h1>
 
 <hr />
 
+<!-- Formulario para buscar cotización -->
+<form asp-action="Create" method="get" class="mb-4">
+    <div class="form-group row">
+        <label for="numeroCotizacion" class="col-sm-2 col-form-label">Buscar Cotización</label>
+        <div class="col-sm-6">
+            <input type="text" name="numeroCotizacion" class="form-control" placeholder="Ingrese número de cotización" />
+        </div>
+        <div class="col-sm-4">
+            <button type="submit" class="btn btn-info">Buscar</button>
+        </div>
+    </div>
+</form>
+
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <!-- Número de Cotización (correlativo, solo lectura) -->
@@ -66,6 +79,14 @@
                 <select asp-for="Ciudad" class="form-control"
                     asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.Ciudad>()"></select>
                 <span asp-validation-for="Ciudad" class="text-danger"></span>
+            </div>
+
+            <!-- Provincia -->
+            <div class="form-group">
+                <label asp-for="Provincia" class="control-label">Provincia</label>
+                <select asp-for="Provincia" class="form-control"
+                    asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.Provincia>()"></select>
+                <span asp-validation-for="Provincia" class="text-danger"></span>
             </div>
 
             <!-- País -->
@@ -130,7 +151,6 @@
             </div>
 
             <div class="form-group mt-3">
-                <!-- <input type="submit" value="Crear" class="btn btn-primary" />-->
                 <input type="submit" name="action" value="Guardar" class="btn btn-secondary" />
                 <input type="submit" name="action" value="Emitir" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
