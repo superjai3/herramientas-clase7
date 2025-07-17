@@ -11,6 +11,7 @@ namespace Seguroquesi.Data
         // ⚠️ Este constructor es SOLO para el generador en tiempo de diseño
         public AppDbContext() { }
 
+        public DbSet<Contacto> Contactos { get; set; }
         public DbSet<Tomador> Tomadores { get; set; }
         public DbSet<Aseguradora> Aseguradoras { get; set; }
         public DbSet<ProductoSeguro> ProductosSeguros { get; set; }

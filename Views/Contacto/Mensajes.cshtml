@@ -1,0 +1,26 @@
+@model IEnumerable<Contacto>
+
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Mensajes de Contacto</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Mensaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Fecha.ToString("g")</td>
+                    <td>@m.Nombre</td>
+                    <td>@m.Email</td>
+                    <td>@m.Mensaje</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

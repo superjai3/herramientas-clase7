@@ -23,6 +23,39 @@
             <div id="contactSuccess" class="alert alert-success mt-3 d-none" role="alert">
                 ¡Gracias por contactarnos! Te responderemos pronto.
             </div>
+            <div id="contactError" class="alert alert-danger mt-3 d-none" role="alert">
+                Ocurrió un error. Por favor, intentá nuevamente.
+            </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+<script>
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const mensaje = document.getElementById('mensaje').value;
+
+    fetch('/Contacto/Enviar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, mensaje })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error();
+        return response.text();
+    })
+    .then(msg => {
+        document.getElementById('contactSuccess').classList.remove('d-none');
+        document.getElementById('contactError').classList.add('d-none');
+        document.getElementById('contactForm').reset();
+    })
+    .catch(() => {
+        document.getElementById('contactError').classList.remove('d-none');
+        document.getElementById('contactSuccess').classList.add('d-none');
+    });
+});
+</script>
+}
