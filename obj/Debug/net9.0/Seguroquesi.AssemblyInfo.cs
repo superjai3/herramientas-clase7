@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Seguroquesi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+242e00518d5c8adf6d22df9d6768df2a16b6a30d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc7004d0eae6bc661f0b1730977646d9592b8b4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Seguroquesi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Seguroquesi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

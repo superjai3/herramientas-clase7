@@ -1,7 +1,7 @@
 @model Seguroquesi.ViewModels.PolizaViewModel
 
 @{
-    ViewData["Title"] = "Crear Póliza";
+    ViewData["Title"] = "Tarificador de Seguros";
 }
 
 <h1>Crear Póliza</h1>
@@ -63,7 +63,8 @@
             <!-- Ciudad -->
             <div class="form-group">
                 <label asp-for="Ciudad" class="control-label">Ciudad</label>
-                <input asp-for="Ciudad" class="form-control" />
+                <select asp-for="Ciudad" class="form-control"
+                    asp-items="Html.GetEnumSelectList<Seguroquesi.Enums.Ciudad>()"></select>
                 <span asp-validation-for="Ciudad" class="text-danger"></span>
             </div>
 
@@ -129,7 +130,9 @@
             </div>
 
             <div class="form-group mt-3">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <!-- <input type="submit" value="Crear" class="btn btn-primary" />-->
+                <input type="submit" name="action" value="Guardar" class="btn btn-secondary" />
+                <input type="submit" name="action" value="Emitir" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
