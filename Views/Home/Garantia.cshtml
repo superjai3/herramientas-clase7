@@ -2,11 +2,53 @@
     ViewData["Title"] = "Garantía del Seguro";
 }
 <div class="container my-5">
-    <h2 class="mb-4 text-center">Garantía del Seguro</h2>
-    <div class="alert alert-info text-center">
-        <i class="bi bi-shield-check"></i> En Seguroquesi, tu tranquilidad es nuestra prioridad. Todas nuestras pólizas cuentan con respaldo internacional y atención 24/7.
+    <h2 class="mb-4 text-center fw-bold">Garantía del Seguro</h2>
+    <div class="alert alert-info text-center shadow-sm py-3 mb-5">
+        <i class="bi bi-shield-check fs-3 text-primary"></i>
+        <span class="ms-2 fs-5">En Seguroquesi, tu tranquilidad es nuestra prioridad. Todas nuestras pólizas cuentan con
+            respaldo internacional y atención 24/7.</span>
     </div>
-    <p>
-        Ofrecemos garantías claras, procesos de reclamo ágiles y un equipo de asesores siempre disponible para ayudarte.
-    </p>
-</div>
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=200&q=80"
+                        alt="Familia protegida" class="rounded-circle mb-3" width="70" height="70">
+                    <h5 class="card-title text-success fw-bold"><i class="bi bi-patch-check"></i> Garantía clara</h5>
+                    <p class="card-text">Procesos simples, sin letra chica y con información transparente desde el
+                        primer día.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=200&q=80""
+                        alt="Atención rápida" class="rounded-circle mb-3" width="70" height="70">
+                    <h5 class="card-title text-primary fw-bold"><i class="bi bi-clock-history"></i> Respuesta ágil</h5>
+                    <p class="card-text">Reclamos ágiles y resolución en menos de 48 horas en la mayoría de los casos.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+                        alt="Asesoramiento profesional" class="rounded-circle mb-3" width="70" height="70">
+                    <h5 class="card-title text-warning fw-bold"><i class="bi bi-people"></i> Asesoramiento profesional
+                    </h5>
+                    <p class="card-text">Equipo de expertos disponible 24/7 para acompañarte en cada paso.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success text-center shadow-sm mt-5">
+        <i class="bi bi-chat-quote fs-4"></i>
+        <span class="ms-2"><strong>Testimonio real:</strong> "Tuve un siniestro y la respuesta fue inmediata, cumplieron
+            todo lo prometido." <em>– Carla S., Rosario</em></span>
+    </div>
+    <div class="text-center mt-4">
+        <a asp-controller="Contacto" asp-action="Index" class="btn btn-primary btn-lg px-4 shadow">Contactar un
+            asesor</a>
+    </div>
