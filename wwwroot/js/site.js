@@ -1,9 +1,10 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('contactForm');
-    if (form) {
+    const successMsg = document.getElementById('contactSuccess');
+    if (form && successMsg) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            document.getElementById('contactSuccess').classList.remove('d-none');
+            successMsg.classList.remove('d-none');
             form.reset();
         });
     }

@@ -9,23 +9,6 @@
     <link rel="stylesheet" href="~/Seguroquesi.styles.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .promo-banner {
-            background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
-            color: #fff;
-            padding: 1.5rem 0;
-            text-align: center;
-            margin-bottom: 2rem;
-            border-radius: 0.5rem;
-        }
-        .promo-banner .btn {
-            margin-top: 1rem;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -85,23 +68,38 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid px-0">
-        <div class="promo-banner">
-            <h2>¡Promoción exclusiva! 20% de descuento en tu primer seguro de auto 🚗</h2>
-            <p>Contrata tu póliza hoy y accede a beneficios únicos para vos y tu familia.</p>
-            <a href="/Promociones" class="btn btn-warning btn-lg shadow">Ver Promociones</a>
-        </div>
-    </div>
+
     <div class="container main-content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-    <footer class="border-top footer text-muted py-3 bg-light mt-5">
-        <div class="container text-center">
-            &copy; 2025 - Seguroquesi - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacidad</a>
+
+    <footer class="border-top footer text-muted py-4 bg-light mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="mb-2 mb-md-0">
+                <span class="fw-bold"><i class="bi bi-shield-shaded"></i> Seguroquesi</span> &copy; 2025
+            </div>
+            <div>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none me-3">
+                    <i class="bi bi-house-door"></i> Home
+                </a>
+                <a asp-area="" asp-controller="Contacto" asp-action="Index" class="text-decoration-none me-3">
+                    <i class="bi bi-envelope"></i> Contacto
+                </a>
+                <a asp-area="" asp-controller="Ayuda" asp-action="Index" class="text-decoration-none">
+                    <i class="bi bi-question-circle"></i> Ayuda
+                </a>
+            </div>
+            <div class="mt-2 mt-md-0">
+                <span>Síguenos:</span>
+                <a href="https://facebook.com" target="_blank" class="text-primary ms-2"><i class="bi bi-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank" class="text-info ms-2"><i class="bi bi-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" class="text-danger ms-2"><i class="bi bi-instagram"></i></a>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

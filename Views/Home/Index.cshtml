@@ -2,35 +2,226 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h2 class="mb-4 text-center">Nuestros Seguros</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="bi bi-car-front"></i> Seguro de Auto</h5>
-                    <p class="card-text">Protege tu vehículo ante todo riesgo, robo y terceros.</p>
-                    <a asp-controller="Poliza" asp-action="Create" class="btn btn-primary">Cotizar</a>
+<div>
+    <!-- Hero Section -->
+    <section class="py-5 bg-primary text-white text-center hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <h1 class="display-4 fw-bold mb-3">Bienvenido a Seguroquesi</h1>
+                    <p class="lead mb-4">Protegemos lo que más valorás con soluciones innovadoras, atención
+                        personalizada y
+                        respaldo internacional.</p>
+                    <a asp-controller="Poliza" asp-action="Create" class="btn btn-warning btn-lg shadow">¡Cotizá tu
+                        póliza
+                        ahora!</a>
+                </div>
+                <div class="col-lg-5">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+                        alt="Familia protegida" class="img-fluid rounded shadow" style="max-height: 320px;">
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="bi bi-house"></i> Seguro de Hogar</h5>
-                    <p class="card-text">Cuidamos tu casa y tus pertenencias ante cualquier imprevisto.</p>
-                    <a asp-controller="Poliza" asp-action="Create" class="btn btn-primary">Cotizar</a>
+    </section>
+
+    <!-- Noticias e Información de Interés -->
+    <section class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="alert alert-info shadow-sm d-flex align-items-center">
+                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=80&q=80"
+                        alt="Auto seguro" class="rounded-circle me-3" width="60" height="60">
+                    <div>
+                        <h5 class="mb-2"><i class="bi bi-info-circle"></i> Novedad: Seguro de Auto con Asistencia
+                            Internacional</h5>
+                        <p class="mb-0">Ahora tu seguro de auto incluye asistencia en países limítrofes sin costo
+                            adicional.
+                            ¡Viajá tranquilo!</p>
+                    </div>
+                </div>
+                <div class="alert alert-success shadow-sm d-flex align-items-center">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=80&q=80"
+                        alt="Hogar protegido" class="rounded-circle me-3" width="60" height="60">
+                    <div>
+                        <h5 class="mb-2"><i class="bi bi-star"></i> Lanzamiento: Plan Hogar Premium</h5>
+                        <p class="mb-0">Nuevo plan con cobertura ante robos, incendios y daños por agua. Incluye
+                            asistencia
+                            de cerrajería y plomería 24/7.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="alert alert-warning shadow-sm d-flex align-items-center">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=80&q=80"
+                        alt="Consejos de seguridad" class="rounded-circle me-3" width="60" height="60">
+                    <div>
+                        <h5 class="mb-2"><i class="bi bi-exclamation-triangle"></i> Consejos para tu seguridad</h5>
+                        <ul class="mb-0">
+                            <li>Actualizá tus datos de contacto para recibir alertas y novedades.</li>
+                            <li>Revisá las coberturas de tu póliza desde tu área de cliente.</li>
+                            <li>Consultá nuestras promociones vigentes y ahorrá en tu próxima renovación.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="alert alert-primary shadow-sm d-flex align-items-center">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=80&q=80"
+                        alt="Noticias del sector" class="rounded-circle me-3" width="60" height="60">
+                    <div>
+                        <h5 class="mb-2"><i class="bi bi-newspaper"></i> Noticias del sector</h5>
+                        <p class="mb-0">El seguro digital crece un 30% en el último año. Seguroquesi lidera la
+                            innovación en
+                            servicios online.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="bi bi-heart-pulse"></i> Seguro de Vida</h5>
-                    <p class="card-text">Tranquilidad para vos y tu familia en todo momento.</p>
-                    <a asp-controller="Poliza" asp-action="Create" class="btn btn-primary">Cotizar</a>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section class="container my-5">
+        <h2 class="mb-4 text-center">Nuestros Seguros</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 shadow-sm border-primary">
+                    <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80"
+                        alt="Seguro de Auto" class="card-img-top" style="height:180px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary"><i class="bi bi-car-front"></i> Seguro de Auto</h5>
+                        <p class="card-text">Protege tu vehículo ante todo riesgo, robo y terceros. Asistencia 24/7 y
+                            cobertura en todo el país.</p>
+                        <a asp-controller="Poliza" asp-action="Create" class="btn btn-outline-primary">Cotizar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-success">
+                    <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80"
+                        alt="Seguro de Hogar" class="card-img-top" style="height:180px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title text-success"><i class="bi bi-house"></i> Seguro de Hogar</h5>
+                        <p class="card-text">Cuidamos tu casa y tus pertenencias ante cualquier imprevisto. Planes
+                            flexibles
+                            y asistencia inmediata.</p>
+                        <a asp-controller="Poliza" asp-action="Create" class="btn btn-outline-success">Cotizar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-danger">
+                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
+                        alt="Seguro de Vida" class="card-img-top" style="height:180px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger"><i class="bi bi-heart-pulse"></i> Seguro de Vida</h5>
+                        <p class="card-text">Tranquilidad para vos y tu familia en todo momento. Cobertura internacional
+                            y
+                            asesoramiento profesional.</p>
+                        <a asp-controller="Poliza" asp-action="Create" class="btn btn-outline-danger">Cotizar</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Beneficios Corporativos -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="mb-4 text-center">¿Por qué elegir Seguroquesi?</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80"
+                        alt="Confianza" class="rounded-circle mb-3" width="80" height="80">
+                    <h5 class="mt-3">Respaldo y confianza</h5>
+                    <p>Más de 10 años protegiendo a miles de familias y empresas con el mejor servicio del mercado.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=200&q=80"
+                        alt="Atención personalizada" class="rounded-circle mb-3" width="80" height="80">
+                    <h5 class="mt-3">Atención personalizada</h5>
+                    <p>Asesores expertos disponibles 24/7 para ayudarte en todo momento, estés donde estés.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=200&q=80"
+                        alt="Gestión ágil" class="rounded-circle mb-3" width="80" height="80">
+                    <h5 class="mt-3">Gestión ágil</h5>
+                    <p>Contratá, gestioná y reclamá tus seguros 100% online, de forma rápida y segura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="container my-5">
+        <h2 class="mb-4 text-center">Lo que dicen nuestros clientes</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María G."
+                            class="rounded-circle mb-3" width="60" height="60">
+                        <p class="card-text fst-italic">"La atención fue excelente y resolvieron mi siniestro en menos
+                            de 48
+                            horas. ¡Muy recomendados!"</p>
+                        <div class="d-flex align-items-center justify-content-center mt-3">
+                            <i class="bi bi-person-circle fs-3 me-2"></i>
+                            <span>María G., Buenos Aires</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Javier P."
+                            class="rounded-circle mb-3" width="60" height="60">
+                        <p class="card-text fst-italic">"Me ayudaron a elegir el mejor seguro para mi auto y el precio
+                            fue
+                            muy competitivo."</p>
+                        <div class="d-flex align-items-center justify-content-center mt-3">
+                            <i class="bi bi-person-circle fs-3 me-2"></i>
+                            <span>Javier P., Córdoba</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Lucía R."
+                            class="rounded-circle mb-3" width="60" height="60">
+                        <p class="card-text fst-italic">"La plataforma es muy fácil de usar y pude gestionar todo desde
+                            mi
+                            celular."</p>
+                        <div class="d-flex align-items-center justify-content-center mt-3">
+                            <i class="bi bi-person-circle fs-3 me-2"></i>
+                            <span>Lucía R., Mendoza</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners/Logos -->
+    <section class="bg-white py-4">
+        <div class="container text-center">
+            <h5 class="mb-4">Confían en nosotros</h5>
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"
+                    height="40">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike" height="40">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
+                    height="40">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" height="40">
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white text-center">
+        <div class="container">
+            <h2 class="fw-bold mb-3">¿Listo para proteger lo que más querés?</h2>
+            <a asp-controller="Poliza" asp-action="Create" class="btn btn-warning btn-lg shadow">Cotizá tu seguro
+                ahora</a>
+        </div>
+    </section>
 </div>

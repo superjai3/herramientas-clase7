@@ -361,5 +361,5 @@ C:\Users\jaime\herramientas-de-programacion\Seguroquesi\bin\Debug\net9.0\runtime
 C:\Users\jaime\herramientas-de-programacion\Seguroquesi\bin\Debug\net9.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\jaime\herramientas-de-programacion\Seguroquesi\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\jaime\herramientas-de-programacion\Seguroquesi\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\compressed\5g2upexn8o-7uefvtuqof.gz
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\compressed\mbngm8zyu2-3ew4ac4gqu.gz
+C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\compressed\mbngm8zyu2-ztulatwo42.gz
+C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\compressed\5g2upexn8o-cg1kllq3kj.gz
