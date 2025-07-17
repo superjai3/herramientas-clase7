@@ -1,4 +1,10 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').classList.remove('d-none');
+            form.reset();
+        });
+    }
+});

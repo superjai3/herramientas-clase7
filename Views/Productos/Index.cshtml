@@ -1,16 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Productos";
 }
-
-<div class="text-center">
-    <h2 class="mb-4 text-center">Nuestros Seguros</h2>
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Nuestros Productos</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title"><i class="bi bi-car-front"></i> Seguro de Auto</h5>
-                    <p class="card-text">Protege tu vehículo ante todo riesgo, robo y terceros.</p>
-                    <a asp-controller="Poliza" asp-action="Create" class="btn btn-primary">Cotizar</a>
+                    <p class="card-text">Cobertura total, terceros y más.</p>
+                    <a href="/Poliza/Create" class="btn btn-primary">Cotizar</a>
                 </div>
             </div>
         </div>
@@ -18,8 +17,8 @@
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title"><i class="bi bi-house"></i> Seguro de Hogar</h5>
-                    <p class="card-text">Cuidamos tu casa y tus pertenencias ante cualquier imprevisto.</p>
-                    <a asp-controller="Poliza" asp-action="Create" class="btn btn-primary">Cotizar</a>
+                    <p class="card-text">Protección para tu vivienda y pertenencias.</p>
+                    <a href="/Poliza/Create" class="btn btn-primary">Cotizar</a>
                 </div>
             </div>
         </div>
@@ -27,8 +26,8 @@
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title"><i class="bi bi-heart-pulse"></i> Seguro de Vida</h5>
-                    <p class="card-text">Tranquilidad para vos y tu familia en todo momento.</p>
-                    <a asp-controller="Poliza" asp-action="Create" class="btn btn-primary">Cotizar</a>
+                    <p class="card-text">Tranquilidad para vos y tu familia.</p>
+                    <a href="/Poliza/Create" class="btn btn-primary">Cotizar</a>
                 </div>
             </div>
         </div>

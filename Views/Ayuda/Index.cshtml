@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Ayuda";
+}
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Ayuda y Preguntas Frecuentes</h2>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                    ¿Cómo cotizo una póliza?
+                </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Desde el menú principal, selecciona "Cotizar Póliza" y completa el formulario.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                    ¿Cómo contacto a un asesor?
+                </button>
+            </h2>
+            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Puedes usar el formulario de contacto o llamarnos al 0800-123-4567.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
