@@ -1,8 +1,0 @@
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\Seguroquesi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\Seguroquesi.AssemblyInfoInputs.cache
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\Seguroquesi.AssemblyInfo.cs
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\Seguroquesi.csproj.CoreCompileInputs.cache
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\Seguroquesi.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\Seguroquesi.RazorAssemblyInfo.cache
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\Seguroquesi.RazorAssemblyInfo.cs
-C:\Users\jaime\herramientas-de-programacion\Seguroquesi\obj\Debug\net9.0\Seguroquesi.sourcelink.json
