@@ -1,0 +1,162 @@
+name: Jira Integration
+
+on:
+  push:
+    branches: [ main, develop, 'feature/*', 'bugfix/*', 'hotfix/*' ]
+  pull_request:
+    branches: [ main ]
+    types: [opened, closed, synchronize]
+  workflow_run:
+    workflows: [".NET CI/CD"]
+    types: [completed]
+
+jobs:
+  jira-integration:
+    name: Update Jira Issues
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Extract Jira Issue Key
+      id: extract-jira-key
+      run: |
+        # Extract JIRA issue key from branch name or commit message
+        BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        echo "Branch: $BRANCH_NAME"
+        
+        # Extract from branch name (format: feature/SEG-123-description)
+        JIRA_KEY=$(echo "$BRANCH_NAME" | grep -oE 'SEG-[0-9]+' | head -1)
+        
+        # If not found in branch, try commit message
+        if [ -z "$JIRA_KEY" ]; then
+          JIRA_KEY=$(git log --oneline -1 | grep -oE 'SEG-[0-9]+' | head -1)
+        fi
+        
+        echo "Extracted JIRA Key: $JIRA_KEY"
+        echo "jira-key=$JIRA_KEY" >> $GITHUB_OUTPUT
+
+    - name: Comment on Jira Issue (Push)
+      if: github.event_name == 'push' && steps.extract-jira-key.outputs.jira-key != ''
+      uses: atlassian/gajira-comment@v3
+      with:
+        issue: ${{ steps.extract-jira-key.outputs.jira-key }}
+        comment: |
+          🚀 *Commit pushed to GitHub*
+          
+          *Repository:* ${{ github.repository }}
+          *Branch:* ${{ github.ref_name }}
+          *Commit:* ${{ github.sha }}
+          *Author:* ${{ github.actor }}
+          
+          *Commit Message:*
+          ${{ github.event.head_commit.message }}
+          
+          [View on GitHub](${{ github.event.head_commit.url }})
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+    - name: Comment on Jira Issue (PR Opened)
+      if: github.event_name == 'pull_request' && github.event.action == 'opened' && steps.extract-jira-key.outputs.jira-key != ''
+      uses: atlassian/gajira-comment@v3
+      with:
+        issue: ${{ steps.extract-jira-key.outputs.jira-key }}
+        comment: |
+          📝 *Pull Request Created*
+          
+          *Title:* ${{ github.event.pull_request.title }}
+          *Author:* ${{ github.event.pull_request.user.login }}
+          *Branch:* ${{ github.event.pull_request.head.ref }} → ${{ github.event.pull_request.base.ref }}
+          
+          *Description:*
+          ${{ github.event.pull_request.body }}
+          
+          [View Pull Request](${{ github.event.pull_request.html_url }})
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+    - name: Transition Jira Issue (PR Merged)
+      if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && steps.extract-jira-key.outputs.jira-key != ''
+      uses: atlassian/gajira-transition@v3
+      with:
+        issue: ${{ steps.extract-jira-key.outputs.jira-key }}
+        transition: "Done"
+        comment: |
+          ✅ *Pull Request Merged*
+          
+          *PR:* ${{ github.event.pull_request.title }}
+          *Merged by:* ${{ github.event.pull_request.merged_by.login }}
+          *Merge commit:* ${{ github.event.pull_request.merge_commit_sha }}
+          
+          [View Merged PR](${{ github.event.pull_request.html_url }})
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+    - name: Comment on Jira Issue (Build Status)
+      if: github.event_name == 'workflow_run' && steps.extract-jira-key.outputs.jira-key != ''
+      uses: atlassian/gajira-comment@v3
+      with:
+        issue: ${{ steps.extract-jira-key.outputs.jira-key }}
+        comment: |
+          🔨 *Build ${{ github.event.workflow_run.conclusion }}*
+          
+          *Workflow:* ${{ github.event.workflow_run.name }}
+          *Status:* ${{ github.event.workflow_run.conclusion }}
+          *Branch:* ${{ github.event.workflow_run.head_branch }}
+          *Run ID:* ${{ github.event.workflow_run.id }}
+          
+          [View Build Results](${{ github.event.workflow_run.html_url }})
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+  smart-commits:
+    name: Process Smart Commits
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Process Smart Commits
+      run: |
+        # Get all commits in this push
+        COMMITS=$(git log --oneline ${{ github.event.before }}..${{ github.event.after }})
+        
+        echo "Processing commits for smart commit actions..."
+        echo "$COMMITS" | while read commit; do
+          echo "Processing: $commit"
+          
+          # Extract JIRA key
+          JIRA_KEY=$(echo "$commit" | grep -oE 'SEG-[0-9]+' | head -1)
+          
+          if [ ! -z "$JIRA_KEY" ]; then
+            echo "Found JIRA key: $JIRA_KEY"
+            
+            # Check for smart commit commands
+            if echo "$commit" | grep -q "#transition"; then
+              echo "Smart commit: transition detected"
+            fi
+            
+            if echo "$commit" | grep -q "#time"; then
+              echo "Smart commit: time logging detected"
+            fi
+            
+            if echo "$commit" | grep -q "#assign"; then
+              echo "Smart commit: assignment detected"
+            fi
+          fi
+        done

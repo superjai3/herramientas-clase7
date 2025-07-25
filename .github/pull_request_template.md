@@ -2,8 +2,9 @@
 Descripción breve de los cambios realizados.
 
 ## 🔗 Relacionado con
-- Issue #[número]
-- Feature request #[número]
+- **Jira Ticket:** [SCRUM-XXX](https://andresvaldes1001.atlassian.net/browse/SCRUM-XXX)
+- **GitHub Issue:** #[número] (si aplica)
+- **Epic:** [SCRUM-XXX](https://andresvaldes1001.atlassian.net/browse/SCRUM-XXX) (si aplica)
 
 ## 📝 Tipo de cambio
 - [ ] 🐛 Bug fix (cambio que no rompe funcionalidad y arregla un issue)

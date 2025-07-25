@@ -1,4 +1,4 @@
-name: .NET CI/CD
+name: .NET CI/CD with Jira Integration
 
 on:
   push:
@@ -35,6 +35,29 @@ jobs:
       with:
         name: published-app
         path: ./publish/
+
+    # Jira Integration - Send build status to Jira
+    - name: Notify Jira - Build Success
+      if: success()
+      uses: atlassian/gajira-transition@v3
+      with:
+        issue: ${{ github.event.head_commit.message }}
+        transition: "Done"
+      env:
+        JIRA_BASE_URL: https://andresvaldes1001.atlassian.net
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+    - name: Notify Jira - Build Failed
+      if: failure()
+      uses: atlassian/gajira-comment@v3
+      with:
+        issue: ${{ github.event.head_commit.message }}
+        comment: "❌ Build failed in GitHub Actions. Check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      env:
+        JIRA_BASE_URL: https://andresvaldes1001.atlassian.net
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
   code-quality:
     runs-on: ubuntu-latest
