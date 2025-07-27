@@ -2,9 +2,9 @@ name: Jira Integration
 
 on:
   push:
-    branches: [ main, integration, develop, 'feature/*', 'bugfix/*', 'hotfix/*' ]
+          branches: [ main, integration, develop, 'feature/*', 'bugfix/*', 'hotfix/*' ]
   pull_request:
-    branches: [ main, integration, develop ]
+    branches: [ main, integration, develop]
     types: [opened, closed, synchronize]
   workflow_run:
     workflows: [".NET CI/CD"]
